@@ -1,0 +1,62 @@
+
+@font-face {
+   font-family: 'KatamotzIkasiMedium';
+   src: url(KatamotzIkasi.ttf);
+}
+.canvas {
+width:100%;
+height:180px;
+background-color: #FFCCFF;
+border: 1px none #000000;	
+}
+.cap {
+	width:9%;
+height:100%;
+    color: black;
+    background-color: #CC99CC;
+    border: 3px solid #FFCCFF;
+  
+line-height:200%;
+	font-size: 500%;
+	text-align: center;
+display: inline-block;
+
+}
+.question {
+	
+width:100%;
+height:180px;
+font-family: 'KatamotzIkasiMedium';
+	font-size: 300%;
+	text-align: center;
+line-height:400%;
+font-weight: bold;
+}
+.foots {
+width:80%;
+height:60px;
+font-family: 'KatamotzIkasiMedium';
+	font-size: 300%;
+display: inherit;
+
+font-weight: bold;
+}
+.arrows {
+width:100%;
+height:100px;
+background-color: #FFFFFF;
+line-height:200%;
+
+text-align: center;
+
+
+}
+.mesage {
+width:100%;
+height:66px;
+background-color: #66FF66;
+	font-size: 500%;
+	display: none;
+	text-align: center;
+	font-weight: bold;
+}
