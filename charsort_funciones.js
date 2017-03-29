@@ -147,7 +147,7 @@ function printarrows(){
 	var directio = ["&#xf178;","&#xf177;"]
 var ico = document.createElement("I");
 ico.setAttribute("class","fa");
-ico.style.fontSize = "1500%"
+ico.style.fontSize = "1000%"
 ico.innerHTML = directio[niv - 1]
 ico.style.color = colores[niv - 1]
 	var element = document.getElementById("Layer6");
