@@ -1,1 +1,12 @@
-var lista_1 = ["sopa:SE COME CON CUCHARA" , "diversión:MUCHA POLICIA, POCA ..." , "casco:VA EN MOTO" , "aprieta:QUIEN MUCHO ABARCA, POCO ..." , "roma:TODOS LOS CAMINOS CONDUCEN A ..." , "ojos:CRIA CUERVOS Y TE SACARAN LOS ..." , "rodilla:EN LA PIERNA" , "ambulancia:TIENE SIRENA Y CAMILLA"]
+	var colores = ["blue","red","blue","red"]
+	var directio = ["&#xf178;","&#xf177;","&#xf178;&#xf178;","&#xf177;&#xf177;"]
+var lista_1 = [
+{ans:"sopa", que : "SE COME CON CUCHARA" },
+{ans:"diversión", que : "MUCHA POLICIA, POCA ..." }, 
+{ans:"casco", que : "VA EN MOTO"} , 
+{ans:"aprieta", que: "QUIEN MUCHO ABARCA, POCO ..."} , 
+{ans:"roma", que : "TODOS LOS CAMINOS CONDUCEN A ..."} , 
+{ans:"ojos", que : "CRIA CUERVOS Y TE SACARAN LOS ..."} , 
+{ans:"rodilla", que : "EN LA PIERNA" },
+{ans:"ambulancia", que : "TIENE SIRENA Y CAMILLA"}
+]

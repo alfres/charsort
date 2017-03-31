@@ -1,15 +1,9 @@
 function check(){
 leer = leercaja()
-leer2 = targ[0]
+leer2 = tar.ans
 var c = leer.localeCompare(leer2)
-
-if ((c == 0)){
-//alert("true " + leercaja() + " " + targ[0])
-return true
-} else {
-
-return false
-}
+if ((c == 0)){ return true
+} else { return false }
 }
 
 function clearbox(){
@@ -38,7 +32,6 @@ function leercaja(){
 function cambiarcolorcaja(uno,otro) {
 uno.style.backgroundColor =  "#DC143C"
 otro.style.backgroundColor = "#00FFFF" 	
-
 }
 function restaurarcolorcaja(uno,otro) {
 	 var c = document.getElementById("Layer1").childNodes;
@@ -46,96 +39,97 @@ function restaurarcolorcaja(uno,otro) {
     for (i = 0; i < (c.length ); i++) {
        c[i].style.backgroundColor = "#CC99CC"
 		 }
-
-}
-function mover(letra){
-divid1 = this.id
-
-divid2 = divid1.replace(targ[0], "");
-
-//alert("mover " + divid2 )
-var avanza = document.getElementById("Layer1");
-switch (niv) {
-case 1:
-palante(this,divid2,1)
-break;
-case 2:
-palante(this,divid2,2)
-break;
 }
 
-
-}
-function printword(quedan2,arraytarget2,targ2,lef2) {
+function printword(arraytarget2) {
 clearbox()
 document.getElementById("Layer7").style.display = 'none';
-for (var i = 0; i < quedan2; i++) {
-var idcap = targ2[0] + i
-    var idcapa = document.createElement("div");
-	idcapa.id = idcap
+var c
+var c2 = arraytarget2.length;
+for (c = 0; c < c2; c++){
+var idcapa = document.createElement("div");
+
 	idcapa.setAttribute("class","cap");
-	cual =alea(arraytarget2.length) 
-	idcapa.textContent = arraytarget2.splice((cual-1), 1);
+	idcapa.setAttribute("id", c );
+	var cual =alea(arraytarget2.length) 
+	idcapa.textContent = arraytarget2.charAt(cual);
+	arraytarget2 = arraytarget2.replace(idcapa.textContent, '')
 	idcapa.contentEditable = false
-	//alert("quedan2 " + arraytarget2.length)
-	idcapa.addEventListener('click',mover,false)
-	//idcapa.onClick= mover;
-	
-	//lef2 = (lef2 + 100);
-	//alert(lef)
+	idcapa.addEventListener('click',function(){
+		switch(niv) {
+case 1: palante(this.id,1) ; break
+case 2: patras(this.id,1) ; break
+case 3: palante(this.id,2) ; break
+case 4: patras(this.id,2) ; break
+}
+   
+	},false)
 	var element = document.getElementById("Layer1");
 element.appendChild(idcapa);
-//idcapa.style.width = '1000px';	
+
 }	
 }
-function palante(yo,pos,cuanto) {
-for (i = 0; i < cuanto; i++) { 
-//alert("for " + pos)
+function palante(ind,cuanto) {
+	var element = document.getElementById("Layer1");
+	var inde = parseInt(ind)
+for (i = 0; i < cuanto; i++) {
+	if (inde == (element.childNodes.length - 1)) { setTimeout(restaurarcolorcaja,300); break;} 
+yo = element.childNodes[inde]
+elotro = element.childNodes[inde + 1]
 myletra = yo.textContent
-idotra = divid1.replace(pos, (parseInt(pos)+1));
-elotro = document.getElementById(idotra)
 otraletra = elotro.textContent
-
 
 yo.textContent = otraletra
 elotro.textContent = myletra
 cambiarcolorcaja(yo,elotro)
-
-yo = document.getElementById(idotra)
-divid1 = yo.id
-pos = (parseInt(pos )+ 1)
+inde = inde + 1
 }
 
 if (check() == true){
+isok()
+}
+setTimeout(restaurarcolorcaja,300,yo,elotro);	
+}
+
+function patras(ind,cuanto) {
+	var element = document.getElementById("Layer1"); 
+	var inde = parseInt(ind)
+for (i = 0; i < cuanto; i++) { 
+if (inde < 1) { setTimeout(restaurarcolorcaja,300); break;}
+yo = element.childNodes[inde]
+elotro = element.childNodes[inde - 1]
+myletra = yo.textContent
+otraletra = elotro.textContent
+
+yo.textContent = otraletra
+elotro.textContent = myletra
+cambiarcolorcaja(yo,elotro)
+inde = inde - 1
+
+}
+
+if (check() == true){
+isok()
+}
+setTimeout(restaurarcolorcaja,300,yo,elotro);	
+}
+function isok() {
 cap =document.getElementById("Layer7")
 cap.textContent = leercaja();
 cap.style.display = 'block';
 punt = punt + 1
 Layer4.textContent = "PUNTOS " + punt;
-setTimeout(newtarget,1900);
-//newtarget()
+setTimeout(newtarget,1900);	
+	
 }
-setTimeout(restaurarcolorcaja,300,yo,elotro);	
-}
-
-
 function alea(resto){
-x = Math.floor((Math.random() * resto) );
-
-return x;
+return Math.floor((Math.random() * resto) )
 }
 function newtarget() {
-
 tar = (lista[alea(lista.length)]) ;
-//tar = "sopa:SE COME CON CUCHARA"
-targ = tar.split(":"); 
-Layer2.textContent = targ[1]
-
-arraytarget = targ[0].split(""); 
-
-lef = 100
-quedan = arraytarget.length
-printword(quedan,arraytarget,targ,lef)	
+arraytarget = tar.ans; 
+Layer2.textContent = tar.que
+printword(tar.ans)	
 if (check() == true){
 newtarget()
 }
@@ -143,8 +137,6 @@ newtarget()
 }
 
 function printarrows(){
-	var colores = ["blue","red"]
-	var directio = ["&#xf178;","&#xf177;"]
 var ico = document.createElement("I");
 ico.setAttribute("class","fa");
 ico.style.fontSize = "1000%"
