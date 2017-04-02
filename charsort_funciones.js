@@ -1,51 +1,19 @@
-function check(){
-leer = leercaja()
-leer2 = tar.ans
-var c = leer.localeCompare(leer2)
-if ((c == 0)){ return true
-} else { return false }
-}
-
-function clearbox(){
-var myNode = document.getElementById("Layer1");
-while (myNode.firstChild) {
-    myNode.removeChild(myNode.firstChild);
-}
-}
-function cleararrows(){
-var myNode = document.getElementById("Layer6");
-while (myNode.firstChild) {
-    myNode.removeChild(myNode.firstChild);
-}
-}
 function leercaja(){
-    var c = document.getElementById("Layer1").childNodes;
-    var txt = "";
-    var i;
-    for (i = 0; i < (c.length ); i++) {
-        txt = txt + c[i].textContent;
-         var2=txt.replace("\n","");
-         txt=var2.replace(" ","");
-		 }
+var txt = "";
+$(".cap").each(function(){ txt = txt + this.textContent;})
  return txt
 }
 function cambiarcolorcaja(uno,otro) {
 uno.style.backgroundColor =  "#DC143C"
 otro.style.backgroundColor = "#00FFFF" 	
 }
-function restaurarcolorcaja(uno,otro) {
-	 var c = document.getElementById("Layer1").childNodes;
-	    var i;
-    for (i = 0; i < (c.length ); i++) {
-       c[i].style.backgroundColor = "#CC99CC"
-		 }
+function restaurarcolorcaja() {
+	$(".cap").each(function(){this.style.backgroundColor = "#CC99CC"})
 }
 
 function printword(arraytarget2) {
-clearbox()
-document.getElementById("Layer7").style.display = 'none';
-var c
-var c2 = arraytarget2.length;
+ Layer7.style.display = 'none'; $(".canvas").empty()
+var c , c2 = arraytarget2.length;
 for (c = 0; c < c2; c++){
 var idcapa = document.createElement("div");
 
@@ -55,94 +23,60 @@ var idcapa = document.createElement("div");
 	idcapa.textContent = arraytarget2.charAt(cual);
 	arraytarget2 = arraytarget2.replace(idcapa.textContent, '')
 	idcapa.contentEditable = false
-	idcapa.addEventListener('click',function(){
-		switch(niv) {
-case 1: palante(this.id,1) ; break
-case 2: patras(this.id,1) ; break
-case 3: palante(this.id,2) ; break
-case 4: patras(this.id,2) ; break
-}
-   
-	},false)
-	var element = document.getElementById("Layer1");
-element.appendChild(idcapa);
-
+	idcapa.addEventListener('click',function(){ palante(this.id) },false)
+Layer1.appendChild(idcapa);
 }	
 }
-function palante(ind,cuanto) {
-	var element = document.getElementById("Layer1");
+function palante(ind) {
 	var inde = parseInt(ind)
 for (i = 0; i < cuanto; i++) {
-	if (inde == (element.childNodes.length - 1)) { setTimeout(restaurarcolorcaja,300); break;} 
-yo = element.childNodes[inde]
-elotro = element.childNodes[inde + 1]
+	if (inde == (Layer1.childNodes.length - 1) && sen > 0) { setTimeout(restaurarcolorcaja,300); break;} 
+if (inde < 1 && sen < 0) { setTimeout(restaurarcolorcaja,300); break;}
+yo = Layer1.childNodes[inde]
+elotro = Layer1.childNodes[inde + sen]
 myletra = yo.textContent
 otraletra = elotro.textContent
-
 yo.textContent = otraletra
 elotro.textContent = myletra
 cambiarcolorcaja(yo,elotro)
-inde = inde + 1
+if(sen > 0){inde = inde + 1} else {inde = inde - 1}
+}
+if ((leercaja().localeCompare(tar.ans) == 0)){ isok() }
+setTimeout(restaurarcolorcaja,300);	
 }
 
-if (check() == true){
-isok()
-}
-setTimeout(restaurarcolorcaja,300,yo,elotro);	
-}
-
-function patras(ind,cuanto) {
-	var element = document.getElementById("Layer1"); 
-	var inde = parseInt(ind)
-for (i = 0; i < cuanto; i++) { 
-if (inde < 1) { setTimeout(restaurarcolorcaja,300); break;}
-yo = element.childNodes[inde]
-elotro = element.childNodes[inde - 1]
-myletra = yo.textContent
-otraletra = elotro.textContent
-
-yo.textContent = otraletra
-elotro.textContent = myletra
-cambiarcolorcaja(yo,elotro)
-inde = inde - 1
-
-}
-
-if (check() == true){
-isok()
-}
-setTimeout(restaurarcolorcaja,300,yo,elotro);	
-}
 function isok() {
-cap =document.getElementById("Layer7")
-cap.textContent = leercaja();
-cap.style.display = 'block';
+Layer7.textContent = leercaja();
+Layer7.style.display = 'block';
 punt = punt + 1
+if (punt > 9) {levelup(); return}
 Layer4.textContent = "PUNTOS " + punt;
-setTimeout(newtarget,1900);	
-	
+setTimeout(newtarget,1500);	
+	}
+function levelup() {
+punt = 0 ; niv = niv + 1	
+Layer4.textContent = "PUNTOS " + punt;	
+Layer3.textContent = "NIVEL " + niv;
+sen = lsen[niv - 1]
+cuanto = lcuan[niv - 1]
+setTimeout(printarrows,1500);
+setTimeout(newtarget,1500);
 }
-function alea(resto){
-return Math.floor((Math.random() * resto) )
-}
+function alea(resto){return Math.floor((Math.random() * resto) )}
 function newtarget() {
 tar = (lista[alea(lista.length)]) ;
 arraytarget = tar.ans; 
 Layer2.textContent = tar.que
 printword(tar.ans)	
-if (check() == true){
-newtarget()
-}
-
+if ((leercaja().localeCompare(tar.ans) == 0)){newtarget()}
 }
 
 function printarrows(){
+	$(".arrows").empty()
 var ico = document.createElement("I");
 ico.setAttribute("class","fa");
 ico.style.fontSize = "1000%"
 ico.innerHTML = directio[niv - 1]
 ico.style.color = colores[niv - 1]
-	var element = document.getElementById("Layer6");
-element.appendChild(ico);
-
+Layer6.appendChild(ico);
 }

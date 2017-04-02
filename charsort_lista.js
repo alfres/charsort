@@ -1,5 +1,7 @@
 	var colores = ["blue","red","blue","red"]
 	var directio = ["&#xf178;","&#xf177;","&#xf178;&#xf178;","&#xf177;&#xf177;"]
+	var lsen = [1,-1,1,-1]
+	var lcuan = [1,1,2,2]
 var lista_1 = [
 {ans:"sopa", que : "SE COME CON CUCHARA" },
 {ans:"diversión", que : "MUCHA POLICIA, POCA ..." }, 
