@@ -10,5 +10,7 @@ var lista_1 = [
 {ans:"roma", que : "TODOS LOS CAMINOS CONDUCEN A ..."} , 
 {ans:"ojos", que : "CRIA CUERVOS Y TE SACARAN LOS ..."} , 
 {ans:"rodilla", que : "EN LA PIERNA" },
-{ans:"ambulancia", que : "TIENE SIRENA Y CAMILLA"}
+{ans:"ambulancia", que : "TIENE SIRENA Y CAMILLA"},
+{ans:"comisión", que : "DONDE HAY HORMIGON, HAY ..."},
+{ans:"aldaba", que : "BUENA CASA, BUENA ..."}
 ]
